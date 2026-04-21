@@ -1,0 +1,9 @@
+express
+angular
+browser
+lang
+
+*jwt
+*playwright
+*puppeteer
+*sequelize
