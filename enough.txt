@@ -7,3 +7,7 @@ lang
 *playwright
 *puppeteer
 *sequelize
+
+
+SONARQUBE:
+
