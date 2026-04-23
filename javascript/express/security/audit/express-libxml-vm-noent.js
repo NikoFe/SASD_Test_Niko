@@ -9,8 +9,8 @@ function handleXmlUpload ({ file }: Request, res: Response, next: NextFunction) 
         // ruleid: express-libxml-vm-noent
         const xmlDoc = vm.runInContext('libxml.parseXml(data, { noblanks: true, noent: true, nocdata: true })', sandbox, { timeout: 2000 })
 
-        // ruleid: express-libxml-vm-noent
-        const xmlDoc = vm.runInContext("libxml.parseXml(data, { noblanks: true, noent: true, nocdata: true })", sandbox, { timeout: 2000 })
+        // ok: express-libxml-vm-noent
+        const xmlDoc = vm.runInContext("libxml.parseXml(data, { noblanks: true, nocdata: true })", sandbox, { timeout: 2000 })
 
         // ruleid: express-libxml-vm-noent
         libxml.parseXml(data, { noblanks: true, noent: true, nocdata: true })
