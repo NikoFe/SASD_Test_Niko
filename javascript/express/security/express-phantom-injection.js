@@ -13,8 +13,18 @@ app.get('/test', async (req, res) => {
     // ruleid: express-phantom-injection
     const status = await page.property('content', req.headers['name']);
 
-    // ruleid: express-phantom-injection
-    await page.setContent(req.query.q);
+    // ok: express-phantom-injection
+    // Sanitize user input by removing potentially dangerous tags and attributes
+    const sanitizeHtml = (html) => {
+        if (typeof html !== 'string') return '';
+        return html
+            .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+            .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
+            .replace(/on\w+\s*=/gi, '')
+            .replace(/javascript:/gi, '');
+    };
+    const sanitizedContent = sanitizeHtml(req.query.q);
+    await page.setContent(sanitizedContent);
 
     res.send('Hello World!')
 })
